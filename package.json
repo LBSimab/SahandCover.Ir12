@@ -1,0 +1,22 @@
+{
+  "name": "sahandcoversv",
+  "version": "1.0.0",
+  "description": "this is a simple api for fetching data from sql server with 0 frontend ",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "eslint": "^9.39.2",
+    "express": "^5.2.1",
+    "joi": "^18.0.2",
+    "mssql": "^12.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
