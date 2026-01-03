@@ -3,7 +3,7 @@ const express =  require("express");
 const produtctRouter = express.Router();
 
 
-produtctRouter.get("/api/product",async(req,res)=>{
+produtctRouter.get("/product",async(req,res)=>{
 
     const rowCode = req.query.ID
     const name = req.query.name

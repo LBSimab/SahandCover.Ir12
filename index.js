@@ -10,7 +10,7 @@ const app = express();
 
 
 
-app.use(produtctRouter)
+app.use("/api",produtctRouter)
 
 try {
     app.listen(process.env.PORT,()=>{console.log("server is running on port 5050")})
