@@ -48,9 +48,9 @@ async function getWarehouse(Id){
    
     // Use parameterized query to prevent SQL injection
     const result = await pool.request()
-      .input("Id", sql.VarChar, `${Id}`) // RowCode type might be different (e.g., sql.Int)
+      .input("RowID", sql.Int, `${Id}`) // RowCode type might be different (e.g., sql.Int)
       .query(`
-        SELECT TOP (1) [RowID]
+        SELECT TOP (5) [RowID]
       ,[Branch_ID]
       ,[RowName]
       ,[IsActive]
@@ -58,7 +58,36 @@ async function getWarehouse(Id){
       ,[UniqueIdentifierValue]
       ,[Company_ID]
       ,[IsSend]
-  FROM [RahkarPOSDB].[dbo].[Warehouse] WHERE branchId = $Id
+  FROM [RahkarPOSDB].[dbo].[Warehouse]
+   WHERE  RowID = @RowID
+
+      `);
+
+    return result
+  } catch (err) {
+    console.error(err);
+    return err;
+  }
+
+
+
+
+}
+async function getWarehousequantity(Id){
+    try {
+   
+    // Use parameterized query to prevent SQL injection
+    const result = await pool.request()
+      .input("GoodId", sql.Int, `${Id}`) // RowCode type might be different (e.g., sql.Int)
+      .query(`
+        SELECT TOP (1000) [RowID]
+      ,[Branch_ID]
+      ,[Good_ID]
+      ,[Warehouse_ID]
+      ,[Stock]
+      ,[UniqueIdentifierValue]
+      ,[IsSend]
+  FROM [RahkarPOSDB].[dbo].[GoodWarehouse] Where Good_ID = @GoodId
 
       `);
 
@@ -73,5 +102,5 @@ async function getWarehouse(Id){
 
 }
 
-module.exports = {getProductByCode,getWarehouse}
+module.exports = {getProductByCode,getWarehouse,getWarehousequantity}
 ;
